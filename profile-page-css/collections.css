@@ -1,0 +1,118 @@
+.collections-section {
+    margin-top: 30px;
+}
+
+.collections-heading,
+.posts-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.collections-heading h2,
+.posts-heading h2 {
+    margin: 0;
+    color: var(--profile-text);
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+}
+
+.collections-heading button {
+    padding: 9px 13px;
+    border: 1px solid rgba(242, 143, 199, 0.3);
+    border-radius: 9px;
+    background: rgba(242, 143, 199, 0.08);
+    color: var(--profile-pink);
+    font-size: 12px;
+    transition: background 0.2s ease;
+}
+
+.collections-heading button:hover {
+    background: rgba(242, 143, 199, 0.17);
+}
+
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.collection-card {
+    position: relative;
+    min-width: 0;
+    min-height: 135px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    background-color: #25243d;
+    background-position: center;
+    background-size: cover;
+    isolation: isolate;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.collection-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(242, 143, 199, 0.55);
+}
+
+.collection-favorites {
+    background-image: url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=700&q=80");
+}
+
+.collection-aesthetics {
+    background-image: url("https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=700&q=80");
+}
+
+.collection-places {
+    background-image: url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=700&q=80");
+}
+
+.collection-people {
+    background-image: url("https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80");
+}
+
+.collection-design {
+    background-image: url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80");
+}
+
+.collection-flowers {
+    background-image: url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=700&q=80");
+}
+
+.collection-overlay {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(5, 8, 22, 0.95) 0%,
+        rgba(5, 8, 22, 0.35) 55%,
+        rgba(5, 8, 22, 0.05) 100%
+    );
+}
+
+.collection-info {
+    width: 100%;
+    padding: 16px;
+}
+
+.collection-info h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.collection-info p {
+    margin: 5px 0 0;
+    color: #d2ccdf;
+    font-size: 11px;
+}

@@ -1,0 +1,28 @@
+.profile-page {
+    background: var(--profile-bg);
+    color: var(--profile-text);
+    min-height: 100vh;
+}
+
+.profile-page *,
+.profile-page *::before,
+.profile-page *::after {
+    box-sizing: border-box;
+}
+
+.profile-page button,
+.profile-page input {
+    font: inherit;
+}
+
+.profile-page button {
+    cursor: pointer;
+}
+
+.profile-main {
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 8px 12px 60px;
+}

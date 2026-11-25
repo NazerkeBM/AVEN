@@ -1,0 +1,10 @@
+:root {
+    --profile-bg: #050b1b;
+    --profile-card: #0b1328;
+    --profile-card-light: #111b33;
+    --profile-pink: #f28fc7;
+    --profile-pink-light: #ffc2e4;
+    --profile-text: #f5f3fa;
+    --profile-muted: #929bb4;
+    --profile-border: rgba(255, 255, 255, 0.08);
+}

@@ -1,0 +1,115 @@
+<dialog class="edit-profile-dialog" id="editProfileDialog">
+
+    <div class="edit-profile-header">
+        <div>
+            <h2>Edit profile</h2>
+            <p>Make your universe truly yours.</p>
+        </div>
+
+        <button type="button"
+                class="edit-profile-close"
+                id="closeEditProfile"
+                aria-label="Close">
+            ×
+        </button>
+    </div>
+
+    <form id="editProfileForm">
+
+        <!-- Аватарка -->
+
+        <div class="edit-avatar-section">
+
+            <div class="edit-avatar-preview"
+                 id="editAvatarPreview">
+                U
+            </div>
+
+            <button type="button"
+                    class="change-avatar-button"
+                    id="changeAvatarButton">
+                Change profile photo
+            </button>
+
+            <input type="file"
+                   id="editAvatarFile"
+                   accept="image/png,image/jpeg"
+                   hidden>
+
+        </div>
+
+        <!-- Отображаемое имя -->
+
+        <div class="edit-profile-field">
+
+            <label for="editDisplayName">
+                Display name
+            </label>
+
+            <input type="text"
+                   id="editDisplayName"
+                   placeholder="Your display name"
+                   maxlength="100"
+                   required>
+
+        </div>
+
+        <!-- Никнейм -->
+
+        <div class="edit-profile-field">
+
+            <label for="editUsername">
+                Username
+            </label>
+
+            <input type="text"
+                   id="editUsername"
+                   readonly>
+
+        </div>
+
+        <!-- Описание профиля -->
+
+        <div class="edit-profile-field">
+
+            <label for="editBio">Bio</label>
+
+            <textarea id="editBio"
+                      placeholder="Tell us about yourself..."
+                      maxlength="500"
+                      rows="4"></textarea>
+
+            <span class="edit-bio-counter"
+                  id="editBioCounter">
+                0 / 500
+            </span>
+
+        </div>
+
+        <!-- Сообщения об ошибках -->
+
+        <p class="edit-profile-message"
+           id="editProfileMessage"
+           role="status"></p>
+
+        <!-- Кнопки управления -->
+
+        <div class="edit-profile-actions">
+
+            <button type="button"
+                    class="edit-cancel-button"
+                    id="cancelEditProfile">
+                Cancel
+            </button>
+
+            <button type="submit"
+                    class="edit-save-button"
+                    id="saveEditProfile">
+                Save changes
+            </button>
+
+        </div>
+
+    </form>
+
+</dialog>

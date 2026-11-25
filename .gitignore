@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Build files
+target/
+build/
+dist/
+node_modules/
+
+# Local uploads
+uploads/
+
+# Logs
+*.log

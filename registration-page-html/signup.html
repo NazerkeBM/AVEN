@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AVEN — Sign up</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../registration-page-css/registration.css">
+</head>
+<body>
+
+  <main class="auth-card">
+
+    <div class="space" aria-hidden="true">
+      <div class="planet planet--top"></div>
+      <div class="planet planet--bottom"></div>
+      <div class="orbit orbit--bottom">
+        <svg class="sparkle sparkle--big" viewBox="0 0 24 24"><path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0Z"/></svg>
+      </div>
+      <svg class="sparkle sparkle--small" viewBox="0 0 24 24"><path d="M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0Z"/></svg>
+      <span class="star star--1"></span>
+      <span class="star star--2"></span>
+      <span class="star star--3"></span>
+      <span class="star star--4"></span>
+    </div>
+
+    <header class="auth-header">
+      <a class="logo" href="../main/main.html" aria-label="AVEN — home">
+
+        <svg class="logo__mark" viewBox="0 0 48 48" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ffffff"/>
+              <stop offset="1" stop-color="#c58cff"/>
+            </linearGradient>
+          </defs>
+          <path d="M24 2c1 11 11 21 22 22-11 1-21 11-22 22-1-11-11-21-22-22C13 23 23 13 24 2Z" fill="url(#logoGrad)"/>
+        </svg>
+        <span class="logo__text">AVEN</span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main">
+        <a href="../main/main.html">Explore</a>
+        <a href="../main/main.html#create">Create</a>
+        <a href="../main/main.html#share">Share</a>
+      </nav>
+    </header>
+
+    <!-- Форма входа -->
+    <section class="auth-body">
+
+      <h1 class="auth-title">Join <span>AVEN</span></h1>
+      <p class="auth-subtitle">Begin your creative journey</p>
+
+      <form id="registerForm" class="auth-form" novalidate>
+
+        <!-- Username -->
+        <div class="field" data-field="username">
+          <div class="field__box">
+            <svg class="field__icon" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor"
+                stroke-width="1.6" aria-hidden="true">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M4 21v-2a8 8 0 0 1 16 0v2"/>
+            </svg>
+
+            <input type="text"
+                  id="username"
+                  name="username"
+                  placeholder="Username"
+                  autocomplete="username"
+                  aria-label="Username"
+                  required>
+          </div>
+          <p class="field__error" role="alert"></p>
+        </div>
+
+        <!-- Email -->
+        <div class="field" data-field="email">
+          <div class="field__box">
+            <svg class="field__icon" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor"
+                stroke-width="1.6" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+              <path d="m3.5 7 8.5 6.5L20.5 7"/>
+            </svg>
+
+            <input type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                  autocomplete="email"
+                  aria-label="Email"
+                  required>
+          </div>
+          <p class="field__error" role="alert"></p>
+        </div>
+
+        <!-- Password -->
+        <div class="field" data-field="password">
+          <div class="field__box">
+            <svg class="field__icon" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor"
+                stroke-width="1.6" aria-hidden="true">
+              <rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/>
+              <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/>
+            </svg>
+
+            <input type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                  autocomplete="new-password"
+                  aria-label="Password"
+                  required>
+          </div>
+          <p class="field__error" role="alert"></p>
+        </div>
+
+        <!-- Confirm password -->
+        <div class="field" data-field="confirmPassword">
+          <div class="field__box">
+            <svg class="field__icon" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor"
+                stroke-width="1.6" aria-hidden="true">
+              <rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/>
+              <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/>
+            </svg>
+
+            <input type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  placeholder="Confirm password"
+                  autocomplete="new-password"
+                  aria-label="Confirm password"
+                  required>
+          </div>
+          <p class="field__error" role="alert"></p>
+        </div>
+
+        <p class="form-message" id="formMessage" role="alert"></p>
+
+        <button type="submit" class="btn btn--primary" id="submitBtn">
+          <span class="btn__text">Sign Up</span>
+
+          <svg class="btn__arrow" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+
+          <span class="btn__spinner" aria-hidden="true"></span>
+        </button>
+
+      </form>
+
+      <p class="auth-footer">
+        Already have an account?
+        <a class="link link--pink link--underline"
+          href="registration.html">Sign In</a>
+      </p>
+
+    </section>
+
+  </main>
+
+  <script type="module" src="../registration-page-js/register.js"></script>
+</body>
+</html>

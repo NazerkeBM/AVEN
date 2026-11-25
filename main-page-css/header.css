@@ -1,0 +1,118 @@
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    border-bottom: 1px solid #182746;
+    background-color: #050b1b;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+    width: 190px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.logo-symbol {
+    color: #f28fc7;
+    font-size: 30px;
+}
+
+.logo-text {
+    color: white;
+    font-size: 24px;
+    letter-spacing: 5px;
+    font-weight: 500;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+    height: 44px;
+    flex: 1;
+    max-width: 650px;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    border: 1px solid #30436b;
+    border-radius: 25px;
+    background-color: #091329;
+}
+
+.search-icon {
+    color: #aeb6ca;
+    font-size: 26px;
+    margin-right: 10px;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    font-size: 13px;
+}
+
+.search-box input::placeholder {
+    color: #7f89a3;
+}
+
+/* =========================
+   HEADER BUTTONS
+========================= */
+
+.header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-button,
+.profile-button {
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.header-button,
+.profile-button {
+    width: 42px;
+    height: 42px;
+}
+
+.header-button svg,
+.profile-button svg {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.header-button:hover svg,
+.profile-button:hover svg {
+    transform: scale(1.1);
+}

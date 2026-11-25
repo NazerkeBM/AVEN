@@ -1,0 +1,92 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo__mark {
+  width: 46px;
+  height: 46px;
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--accent) 60%, transparent));
+}
+
+.logo__text {
+  margin-left: -8px;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-menu__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.user-menu__avatar {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.user-menu__avatar svg {
+  width: 20px;
+  height: 20px;
+}
+
+.user-menu__chevron {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s;
+}
+
+.user-menu__btn[aria-expanded="true"] .user-menu__chevron {
+  transform: rotate(180deg);
+}
+
+.user-menu__list {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 10;
+  min-width: 170px;
+  padding: 6px;
+  background: var(--card);
+  border: 1px solid var(--card-edge);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.user-menu__list[hidden] {
+  display: none;
+}
+
+.user-menu__list a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+.user-menu__list a:hover {
+  background: var(--nav-active);
+}

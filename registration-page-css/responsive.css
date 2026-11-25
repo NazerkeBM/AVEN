@@ -1,0 +1,42 @@
+@media (max-width: 600px) {
+  body {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .auth-card {
+    min-height: 100vh;
+    padding: 24px 20px 32px;
+    border-radius: 0;
+    border: 0;
+  }
+
+  .auth-body {
+    margin-top: 80px;
+  }
+
+  .auth-title {
+    font-size: 34px;
+  }
+
+  .planet--top {
+    right: -200px;
+  }
+}
+
+@media (max-width: 380px) {
+  .top-nav {
+    display: none;
+  }
+}
+
+/* ===== Уменьшение анимации ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

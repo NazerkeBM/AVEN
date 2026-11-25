@@ -1,0 +1,39 @@
+:root {
+  --accent: #f27fd0;
+  --accent-2: color-mix(in srgb, var(--accent) 40%, #7a5cf0);
+  --gradient: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
+
+  --bg: #060714;
+  --bg-glow: #0d0f33;
+  --card: #0a0c22;
+  --card-edge: rgba(140, 120, 255, 0.28);
+  --line: rgba(140, 120, 255, 0.22);
+  --field-bg: rgba(18, 20, 58, 0.55);
+  --field-border: rgba(140, 120, 255, 0.35);
+  --nav-active: rgba(120, 100, 240, 0.22);
+  --text: #f4f0ff;
+  --muted: #9b98c0;
+  --error: #ff7a9c;
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  --star: #fff;
+
+  --font: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #eceefb;
+  --bg-glow: #f8f8ff;
+  --card: #ffffff;
+  --card-edge: rgba(110, 95, 220, 0.25);
+  --line: rgba(110, 95, 220, 0.18);
+  --field-bg: #f5f5fd;
+  --field-border: rgba(110, 95, 220, 0.3);
+  --nav-active: color-mix(in srgb, var(--accent) 16%, #fff);
+  --text: #1b1943;
+  --muted: #6b6a92;
+  --error: #d6336c;
+  --shadow: 0 30px 70px rgba(70, 60, 160, 0.18);
+  --star: #8b6cf0;
+  color-scheme: light;
+}

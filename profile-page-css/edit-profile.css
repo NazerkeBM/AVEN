@@ -1,0 +1,294 @@
+.edit-profile-dialog {
+    width: 460px;
+    max-width: calc(100vw - 32px);
+    max-height: 90vh;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 28px;
+
+    background: #101229;
+    color: #f4f0ff;
+
+    border: 1px solid rgba(140, 120, 255, 0.35);
+    border-radius: 24px;
+
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+
+    font-family: inherit;
+
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.edit-profile-dialog::-webkit-scrollbar {
+    display: none;
+}
+
+.edit-profile-dialog::backdrop {
+    background: rgba(6, 7, 20, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.edit-profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+
+    margin-bottom: 24px;
+}
+
+.edit-profile-header h2 {
+    margin: 0 0 6px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.edit-profile-header p {
+    margin: 0;
+    color: #9b98c0;
+    font-size: 13px;
+}
+
+.edit-profile-close {
+    background: transparent;
+    border: none;
+    color: #9b98c0;
+
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.edit-profile-close:hover {
+    color: #f4f0ff;
+}
+
+.edit-avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 24px;
+}
+
+.edit-avatar-preview {
+    width: 90px;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #25213f;
+    color: #d6b7ff;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.edit-avatar-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.change-avatar-button {
+    background: transparent;
+    border: none;
+
+    color: #d5a0ee;
+    font-family: inherit;
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.change-avatar-button:hover {
+    color: #f27fd0;
+}
+
+.edit-profile-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin-bottom: 18px;
+}
+
+.edit-profile-field label {
+    color: #c4b9df;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.edit-profile-field input,
+.edit-profile-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    background: #191b36;
+    color: #f4f0ff;
+
+    border: 1px solid rgba(140, 120, 255, 0.3);
+    border-radius: 12px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.edit-profile-field input:focus,
+.edit-profile-field textarea:focus {
+    border-color: #b57be8;
+}
+
+.edit-profile-field input::placeholder,
+.edit-profile-field textarea::placeholder {
+    color: #777493;
+}
+
+.edit-profile-field input[readonly] {
+    background: #14162c;
+    color: #8885a6;
+    cursor: default;
+}
+
+.edit-profile-field textarea {
+    resize: vertical;
+    min-height: 90px;
+    max-height: 180px;
+}
+
+.edit-bio-counter {
+    align-self: flex-end;
+
+    color: #9b98c0;
+    font-size: 11px;
+}
+
+.edit-profile-message {
+    margin: 0 0 12px;
+
+    color: #ff7a9c;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.edit-profile-message:empty {
+    display: none;
+}
+
+.edit-profile-actions {
+    display: flex;
+    gap: 12px;
+
+    margin-top: 24px;
+}
+
+.edit-cancel-button,
+.edit-save-button {
+    flex: 1;
+
+    padding: 13px 16px;
+
+    border-radius: 12px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.edit-cancel-button {
+    background: transparent;
+    border: 1px solid #49406c;
+    color: #c4b9df;
+}
+
+.edit-save-button {
+    background: linear-gradient(
+        90deg,
+        #f27fd0,
+        #b57be8,
+        #8b6cf0
+    );
+
+    border: 1px solid transparent;
+    color: #10091e;
+}
+
+.edit-cancel-button:hover,
+.edit-save-button:hover {
+    transform: translateY(-2px);
+}
+
+.edit-save-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ===== Адаптация под мобильные устройства ===== */
+
+@media (max-width: 480px) {
+
+    .edit-profile-dialog {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .edit-profile-header h2 {
+        font-size: 21px;
+    }
+
+    .edit-avatar-preview {
+        width: 76px;
+        height: 76px;
+    }
+}
+
+/* ===== Исправление кнопки закрытия ===== */
+
+.edit-profile-close {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    box-shadow: none;
+
+    color: #9b98c0;
+}
+
+.edit-profile-close:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.edit-profile-close:focus-visible {
+    outline: 1px solid #9b98c0;
+    outline-offset: 2px;
+}
+
+.edit-profile-close:hover {
+    background: rgba(140, 120, 255, 0.1);
+    color: #f4f0ff;
+}

@@ -1,0 +1,50 @@
+.field {
+  margin-bottom: 12px;
+}
+
+.field__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 52px;
+  padding: 0 14px;
+  background: var(--field-bg);
+  border: 1px solid var(--field-border);
+  border-radius: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field__box:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.field__label {
+  margin-bottom: 1px;
+  font-size: 10.5px;
+  color: var(--muted);
+}
+
+.field input {
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 13.5px;
+}
+
+.field__error {
+  margin: 6px 4px 0;
+  font-size: 12px;
+  color: var(--error);
+}
+
+.field__error:empty {
+  display: none;
+}
+
+.field--error .field__box {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--error) 15%, transparent);
+}

@@ -1,0 +1,39 @@
+.profile-tabs {
+    display: flex;
+    gap: 27px;
+    margin-top: 30px;
+    border-bottom: 1px solid var(--profile-border);
+}
+
+.profile-tab {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 5px;
+    border: none;
+    background: transparent;
+    color: var(--profile-muted);
+    font-size: 13px;
+    transition: color 0.2s ease;
+}
+
+.profile-tab span {
+    font-size: 17px;
+}
+
+.profile-tab:hover,
+.profile-tab.active {
+    color: var(--profile-pink);
+}
+
+.profile-tab.active::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--profile-pink);
+}

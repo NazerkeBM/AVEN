@@ -1,0 +1,167 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="150 55 850 420">
+
+    <defs>
+
+        <linearGradient id="avGradient"
+                        gradientUnits="userSpaceOnUse"
+                        x1="340" y1="370"
+                        x2="505" y2="115">
+
+            <stop offset="0%" stop-color="#ffc0b6"/>
+            <stop offset="50%" stop-color="#ffd0e5"/>
+            <stop offset="100%" stop-color="#ca94ed"/>
+
+        </linearGradient>
+
+        <linearGradient id="enGradient"
+                        gradientUnits="userSpaceOnUse"
+                        x1="640" y1="355"
+                        x2="875" y2="230">
+
+            <stop offset="0%" stop-color="#ffc1ca"/>
+            <stop offset="100%" stop-color="#d4a1f5"/>
+
+        </linearGradient>
+
+        <linearGradient id="orbitGradient"
+                        gradientUnits="userSpaceOnUse"
+                        x1="185" y1="390"
+                        x2="970" y2="250">
+
+            <stop offset="0%" stop-color="#ffc0c0"/>
+            <stop offset="50%" stop-color="#ffd0df"/>
+            <stop offset="100%" stop-color="#dfa9f1"/>
+
+        </linearGradient>
+
+    </defs>
+
+    <path id="orbit-back"
+          fill="url(#orbitGradient)"
+          d="
+          M190 378
+          C204 306 468 233 710 231
+          C825 228 937 236 961 270
+          L944 276
+          C900 235 798 233 710 235
+          C470 241 235 310 210 373
+          Z"/>
+
+
+    
+<!-- ЕДИНАЯ МОНОГРАММА AV -->
+
+<g id="logo-symbol"
+   fill="url(#avGradient)">
+
+    <path fill-rule="evenodd"
+          d="
+          M473 75
+          C472 155 453 192 417 226
+          C383 259 359 300 337 340
+          C324 359 308 369 287 377
+
+          L382 355
+          C357 357 350 351 363 331
+          L390 292
+          Q413 278 434 290
+
+          L477 356
+          C502 392 516 420 517 452
+          C518 420 526 388 545 358
+
+          L608 260
+          C625 236 638 220 665 206
+          C627 224 595 233 548 241
+
+          L599 238
+          L548 319
+          L512 264
+
+          C495 241 511 235 550 234
+          C505 225 477 166 473 75
+          Z
+
+          M393 280
+          L414 251
+          L436 283
+          Q414 276 393 280
+          Z
+
+          M445 207
+          C437 198 429 205 431 219
+          Q431 225 437 234
+          L499 328
+          Q513 349 537 339
+          L456 214
+          Q450 205 445 207
+          Z"/>
+
+</g>
+
+
+    <g id="letter-e"
+       fill="url(#enGradient)">
+
+        <path d="
+              M739 239
+              C686 219 631 248 626 300
+              C620 345 660 362 698 354
+              Q733 347 749 321
+              C730 345 708 351 684 348
+              C648 344 635 312 650 280
+              C667 242 708 228 731 246
+              L743 265
+              Z"/>
+
+        <!-- Маленькая звезда внутри E -->
+
+        <path id="letter-star"
+              d="
+              M701 255
+              Q703 289 739 292
+              Q703 295 701 329
+              Q698 295 663 292
+              Q698 289 701 255
+              Z"/>
+
+    </g>
+
+    <g id="letter-n"
+       fill="url(#enGradient)">
+
+        <path d="
+              M750 235
+              L786 235
+              L877 327
+              L877 254
+              Q877 239 857 236
+              L903 236
+              Q883 240 883 254
+              L883 356
+              L772 248
+              L772 334
+              Q772 350 804 353
+              L750 353
+              Q766 350 766 334
+              L766 252
+              Q766 239 750 235
+              Z"/>
+
+    </g>
+
+    <path id="orbit-front"
+          fill="url(#orbitGradient)"
+          d="
+          M895 239
+          C1070 268 905 365 673 407
+          C445 449 194 438 184 384
+          C174 340 278 297 385 271
+          C265 311 210 350 212 377
+          C220 423 445 437 673 397
+          C848 366 1016 292 895 239
+          Z"/>
+
+</svg>

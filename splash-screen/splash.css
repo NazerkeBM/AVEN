@@ -1,0 +1,210 @@
+#aven-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: radial-gradient(
+        ellipse at center,
+        #17122e 0%,
+        #090b1b 45%,
+        #040510 100%
+    );
+
+    overflow: hidden;
+    transition: opacity 0.8s ease,
+                visibility 0.8s ease;
+}
+
+#aven-splash.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-content {
+    position: relative;
+    width: min(520px, 85vw);
+    aspect-ratio: 2 / 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.splash-logo {
+    position: relative;
+    z-index: 3;
+
+    width: 85%;
+    height: auto;
+
+    opacity: 0;
+    transform: scale(0.88);
+
+    animation: splashLogoReveal
+        1.8s ease 0.25s forwards;
+}
+
+.splash-glow {
+    position: absolute;
+    width: 85%;
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba(242, 127, 208, 0.15),
+        rgba(139, 108, 240, 0.08) 40%,
+        transparent 70%
+    );
+
+    filter: blur(35px);
+    opacity: 0;
+
+    animation: splashGlowReveal
+        2.5s ease forwards;
+}
+
+.splash-orbit {
+    position: absolute;
+    width: 110%;
+    height: 55%;
+
+    border: 1px solid transparent;
+    border-bottom-color: #e7b8ff;
+    border-left-color: #a88ae8;
+
+    border-radius: 50%;
+
+    transform: rotate(-18deg) scale(0.7);
+    opacity: 0;
+
+    box-shadow: 0 8px 25px -12px #d2a5ff;
+
+    animation: splashOrbitReveal
+        1.8s ease 0.6s forwards;
+}
+
+.splash-orbit::after {
+    content: "✦";
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+
+    offset-path: ellipse(50% 50% at 50% 50%);
+    offset-rotate: 0deg;
+
+    color: #fff4ff;
+    font-size: 24px;
+
+    text-shadow:
+        0 0 8px #ffffff,
+        0 0 18px #e1b0ff,
+        0 0 35px #a884ff;
+
+    animation: splashOrbitTravel
+        2.8s ease-in-out forwards;
+}
+
+.splash-particle {
+    position: absolute;
+    z-index: 2;
+
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+
+    background: #f4dcff;
+
+    box-shadow:
+        0 0 6px #eacbff,
+        0 0 12px #aa85ff;
+
+    opacity: 0;
+
+    animation: splashTwinkle
+        2s ease-in-out infinite;
+
+    animation-delay: var(--delay, 0s);
+}
+
+@keyframes splashLogoReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.88);
+        filter: blur(8px);
+    }
+
+    65% {
+        opacity: 1;
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+
+        filter: drop-shadow(
+            0 0 14px rgba(214, 165, 255, 0.4)
+        );
+    }
+}
+
+@keyframes splashGlowReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+@keyframes splashOrbitReveal {
+    0% {
+        opacity: 0;
+        transform: rotate(-18deg) scale(0.7);
+    }
+
+    100% {
+        opacity: 0.85;
+        transform: rotate(-18deg) scale(1);
+    }
+}
+
+@keyframes splashOrbitTravel {
+    from {
+        offset-distance: 0%;
+    }
+
+    to {
+        offset-distance: 100%;
+    }
+}
+
+@keyframes splashTwinkle {
+    0%, 100% {
+        opacity: 0.1;
+        transform: scale(0.6);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: scale(1.4);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #aven-splash * {
+        animation-duration: 0.01s !important;
+        animation-delay: 0s !important;
+    }
+}

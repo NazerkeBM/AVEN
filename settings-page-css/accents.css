@@ -1,0 +1,37 @@
+.accents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.accent {
+  cursor: pointer;
+}
+
+.accent input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.accent span {
+  display: block;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--swatch);
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+
+.accent:hover span {
+  transform: scale(1.1);
+}
+
+.accent input:checked + span {
+  box-shadow: 0 0 0 2px var(--card), 0 0 0 4px var(--swatch);
+}
+
+.accent input:focus-visible + span {
+  outline: 2px solid var(--text);
+  outline-offset: 5px;
+}

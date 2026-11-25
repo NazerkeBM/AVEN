@@ -1,0 +1,58 @@
+.auth-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.logo__mark {
+  width: 56px;
+  height: 56px;
+  filter: drop-shadow(0 0 10px rgba(210, 130, 255, 0.7));
+}
+
+.logo__text {
+  margin-left: -10px;
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.top-nav a {
+  position: relative;
+  transition: color 0.2s;
+}
+
+.top-nav a:first-child {
+  color: var(--text);
+}
+
+.top-nav a + a::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  margin-top: -1px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.top-nav a:hover {
+  color: var(--pink);
+}

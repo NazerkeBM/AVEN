@@ -1,0 +1,47 @@
+.space {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.orbit {
+  position: absolute;
+  bottom: 70px;
+  left: -60px;
+  width: 280px;
+  height: 120px;
+  border-top: 2px solid color-mix(in srgb, var(--accent) 80%, transparent);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  transform: rotate(-24deg);
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--accent) 70%, transparent));
+}
+
+.sparkle {
+  position: absolute;
+  left: 44%;
+  top: -16px;
+  width: 30px;
+  height: 30px;
+  fill: var(--star);
+  filter: drop-shadow(0 0 8px var(--accent));
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--star);
+  box-shadow: 0 0 6px 1px color-mix(in srgb, var(--star) 70%, transparent);
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.star--1 { top: 52%; left: 6%; }
+.star--2 { top: 64%; left: 14%; animation-delay: 1.4s; }
+.star--3 { top: 88%; left: 9%; animation-delay: 2.6s; }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}

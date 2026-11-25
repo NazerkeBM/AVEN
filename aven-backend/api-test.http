@@ -1,0 +1,28 @@
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+###
+GET http://localhost:8080/api/users
+
+{
+  "username": "aven_user",
+  "email": "aven@example.com",
+  "passwordHash": "test-password",
+  "displayName": "AVEN User",
+  "bio": "Creative visual enthusiast",
+  "avatarUrl": "https://example.com/avatar.jpg",
+  "createdAt": "2026-10-02T16:00:00"
+}
+
+### Create Board
+POST http://localhost:8080/api/boards
+Content-Type: application/json
+
+{
+  "name": "My Inspiration",
+  "description": "My first AVEN board",
+  "coverImageUrl": "https://example.com/cover.jpg",
+  "user": {
+    "id": 1
+  }
+}
