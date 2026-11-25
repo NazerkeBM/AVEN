@@ -136,6 +136,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         renderPosts(
+            userPosts,
             isOwnProfile
                 ? "You haven't published anything yet."
                 : "This user hasn't published anything yet."
