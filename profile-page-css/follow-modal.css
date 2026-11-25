@@ -1,0 +1,223 @@
+.follow-stat {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.follow-stat:hover {
+    opacity: 0.7;
+}
+
+.follow-stat:hover strong,
+.follow-stat:hover span {
+    color: var(--profile-pink);
+}
+
+.follow-stat:focus-visible {
+    outline: 2px solid var(--profile-pink);
+    outline-offset: 5px;
+    border-radius: 4px;
+}
+
+.follow-modal {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+
+    width: min(420px, calc(100% - 32px));
+    max-height: 80vh;
+
+    padding: 24px;
+    box-sizing: border-box;
+
+    background: var(--profile-card, #101529);
+    color: var(--profile-text, #f4f0ff);
+
+    border: 1px solid var(--profile-border, #302b49);
+    border-radius: 22px;
+
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.45);
+}
+
+.follow-modal::backdrop {
+    background: rgba(5, 7, 20, 0.65);
+    backdrop-filter: blur(8px);
+}
+
+.follow-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.follow-modal-header h2 {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.follow-modal-close {
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid var(--profile-border);
+    border-radius: 50%;
+
+    background: transparent;
+    color: var(--profile-muted);
+
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.follow-modal-close:hover {
+    color: var(--profile-pink);
+    border-color: var(--profile-pink);
+}
+
+.follow-modal-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--profile-border);
+    margin-bottom: 12px;
+}
+
+.follow-modal-tab {
+    flex: 1;
+    padding: 12px 8px;
+
+    border: none;
+    border-bottom: 2px solid transparent;
+
+    background: transparent;
+    color: var(--profile-muted);
+
+    font-size: 14px;
+    cursor: pointer;
+
+    transition: color 0.2s ease;
+}
+
+.follow-modal-tab:hover,
+.follow-modal-tab.active {
+    color: var(--profile-pink);
+}
+
+.follow-modal-tab.active {
+    border-bottom-color: var(--profile-pink);
+}
+
+.follow-modal-list {
+    min-height: 120px;
+    max-height: 50vh;
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--profile-border) transparent;
+}
+
+.follow-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 8px;
+    border-radius: 12px;
+
+    color: inherit;
+    text-decoration: none;
+
+    transition: background 0.2s ease;
+}
+
+.follow-user:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.follow-user-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    background: linear-gradient(
+        145deg,
+        #f7b3da,
+        #9d7bd0
+    );
+
+    color: #25132f;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.follow-user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.follow-user-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    gap: 4px;
+}
+
+.follow-user-info strong {
+    color: var(--profile-text);
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.follow-user-info span {
+    color: var(--profile-muted);
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.follow-user-arrow {
+    color: var(--profile-muted);
+    font-size: 20px;
+}
+
+.follow-empty-state {
+    padding: 36px 12px;
+    text-align: center;
+    color: var(--profile-muted);
+    font-size: 13px;
+}
+
+#profileFollow.is-following {
+    background: transparent;
+    border-color: var(--profile-pink);
+    color: var(--profile-pink);
+}
+
+#profileFollow.is-following:hover {
+    background: rgba(242, 143, 199, 0.1);
+}
+
+#profileFollow:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+@media (max-width: 480px) {
+    .follow-modal {
+        padding: 18px;
+        border-radius: 18px;
+    }
+
+    .follow-modal-header h2 {
+        font-size: 19px;
+    }
+}

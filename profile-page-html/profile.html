@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../profile-page-css/profile.css">
     <link rel="stylesheet" href="../profile-page-css/mobile-profile.css">
     <link rel="stylesheet" href="../profile-page-css/edit-profile.css">
+    <link rel="stylesheet" href="../profile-page-css/follow-modal.css">
     <link rel="stylesheet" href="../create-publication/create-publication.css">
 
 </head>
@@ -135,19 +136,29 @@
                         </p>
 
                         <div class="profile-stats">
-                            <div>
-                                <strong>24</strong>
-                                <span>posts</span>
-                            </div>
-                            <div>
-                                <strong>1.2k</strong>
-                                <span>followers</span>
-                            </div>
-                            <div>
-                                <strong>186</strong>
-                                <span>following</span>
-                            </div>
+                        <div>
+                            <strong>—</strong>
+                            <span>posts</span>
                         </div>
+
+                        <div class="follow-stat"
+                            id="openFollowers"
+                            role="button"
+                            tabindex="0">
+                            <strong>—</strong>
+                            <span>followers</span>
+                        </div>
+
+                        <div class="follow-stat"
+                            id="openFollowing"
+                            role="button"
+                            tabindex="0">
+                            <strong>—</strong>
+                            <span>following</span>
+                        </div>
+
+                    </div>
+
                     </div>
 
                     <div class="profile-actions">
@@ -332,6 +343,43 @@
 
         </main>
     </div>
+
+    <!-- Followers and Following modal -->
+
+    <dialog class="follow-modal" id="followModal">
+
+        <div class="follow-modal-header">
+            <h2>Connections</h2>
+
+            <button type="button"
+                    class="follow-modal-close"
+                    id="closeFollowModal"
+                    aria-label="Close">
+                ×
+            </button>
+        </div>
+
+        <div class="follow-modal-tabs">
+
+            <button type="button"
+                    class="follow-modal-tab active"
+                    data-follow-tab="followers">
+                Followers
+            </button>
+
+            <button type="button"
+                    class="follow-modal-tab"
+                    data-follow-tab="following">
+                Following
+            </button>
+
+        </div>
+
+        <div class="follow-modal-list"
+            id="followModalList">
+        </div>
+
+    </dialog>
 
    <script src="../profile-page-js/profile.js"></script>
    <script src="../profile-page-js/edit-profile.js"></script>

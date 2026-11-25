@@ -152,6 +152,8 @@ function showImage(index) {
 
     currentImageIndex = index;
 
+    loadViewerFollowData(author);
+
     syncViewerActions();
 
     document.getElementById("commentInput").value = "";
@@ -339,12 +341,180 @@ viewerDownload.addEventListener("click", () => {
 
 const viewerFollow = document.querySelector("#viewerFollow");
 
-viewerFollow.addEventListener("click", () => {
-    if (viewerFollow.textContent.trim() === "Follow") {
-        viewerFollow.textContent = "Following ✓";
-    } else {
-        viewerFollow.textContent = "Follow";
+const viewerFollowAPI =
+    `http://${window.location.hostname}:8080/api`;
+
+let viewerAuthorId = null;
+let viewerIsFollowing = false;
+let viewerFollowRequest = 0;
+
+
+async function loadViewerFollowData(author) {
+
+    const requestId = ++viewerFollowRequest;
+
+    viewerAuthorId = author?.id ?? null;
+    viewerIsFollowing = false;
+
+    const publications = document.getElementById("viewerPublications");
+    const subscribers = document.getElementById("viewerSubscribers");
+
+    viewerFollow.disabled = true;
+    viewerFollow.hidden = false;
+    viewerFollow.textContent = "Follow";
+
+    publications.textContent = "—";
+    subscribers.textContent = "—";
+
+    if (!viewerAuthorId) {
+        return;
     }
+
+    const authorId = viewerAuthorId;
+
+    publications.textContent = allImages.filter(
+        image => Number(image.user?.id) === Number(authorId)
+    ).length;
+
+    try {
+
+        const [userResponse, statsResponse] = await Promise.all([
+
+            fetch(`${viewerFollowAPI}/auth/me`, {
+                credentials: "include"
+            }),
+
+            fetch(`${viewerFollowAPI}/follows/stats/${authorId}`, {
+                credentials: "include"
+            })
+
+        ]);
+
+        if (!userResponse.ok || !statsResponse.ok) {
+            throw new Error("Could not load author data");
+        }
+
+        const user = await userResponse.json();
+        const stats = await statsResponse.json();
+
+        if (requestId !== viewerFollowRequest) {
+            return;
+        }
+
+        subscribers.textContent = stats.followers;
+
+        if (Number(user.id) === Number(authorId)) {
+            viewerFollow.hidden = true;
+            return;
+        }
+
+        const statusResponse = await fetch(
+            `${viewerFollowAPI}/follows/status/${user.id}/${authorId}`,
+            {
+                credentials: "include"
+            }
+        );
+
+        if (!statusResponse.ok) {
+            throw new Error("Could not load follow status");
+        }
+
+        const status = await statusResponse.json();
+
+        if (requestId !== viewerFollowRequest) {
+            return;
+        }
+
+        viewerIsFollowing = status.following;
+
+        updateViewerFollowButton();
+
+        viewerFollow.disabled = false;
+
+    } catch (error) {
+        console.error("Could not load follow data:", error);
+    }
+}
+
+
+function updateViewerFollowButton() {
+
+    viewerFollow.textContent =
+        viewerIsFollowing ? "Following ✓" : "Follow";
+
+    viewerFollow.classList.toggle(
+        "is-following",
+        viewerIsFollowing
+    );
+}
+
+
+viewerFollow.addEventListener("click", async () => {
+
+    if (!viewerAuthorId || viewerFollow.disabled) {
+        return;
+    }
+
+    const authorId = viewerAuthorId;
+    const requestId = viewerFollowRequest;
+
+    viewerFollow.disabled = true;
+
+    try {
+
+        const csrfResponse = await fetch(
+            `${viewerFollowAPI}/csrf`,
+            {
+                credentials: "include"
+            }
+        );
+
+        if (!csrfResponse.ok) {
+            throw new Error("Could not obtain CSRF token");
+        }
+
+        const csrf = await csrfResponse.json();
+
+        if (requestId !== viewerFollowRequest) {
+            return;
+        }
+
+        const response = await fetch(
+            `${viewerFollowAPI}/follows/${authorId}`,
+            {
+                method: viewerIsFollowing ? "DELETE" : "POST",
+                credentials: "include",
+                headers: {
+                    [csrf.headerName]: csrf.token
+                }
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
+
+        if (requestId !== viewerFollowRequest) {
+            return;
+        }
+
+        viewerIsFollowing = !viewerIsFollowing;
+
+        updateViewerFollowButton();
+
+        await loadViewerFollowData({ id: authorId });
+
+    } catch (error) {
+
+        console.error("Could not update subscription:", error);
+
+        if (requestId === viewerFollowRequest) {
+            viewerFollow.disabled = false;
+            alert("Unable to update subscription.");
+        }
+
+    }
+
 });
 
 function getImageColor(imageElement) {
