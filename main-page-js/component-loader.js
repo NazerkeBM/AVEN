@@ -22,7 +22,9 @@ async function loadPageComponents() {
         ["header-container", "main-page-html/header.html"],
         ["sidebar-container", "main-page-html/sidebar.html"],
         ["hero-container", "main-page-html/hero.html"],
+        ["explore-container", "explore/explore.html"],
         ["categories-container", "main-page-html/categories.html"],
+        ["search-results-container", "search/search-results.html"],
         ["image-grid-container", "main-page-html/image-grid.html"],
         ["image-viewer-container", "main-page-html/image-viewer.html"]
     ];
@@ -57,9 +59,13 @@ async function startAven() {
 
     viewerScript.src = "main-page-js/image-viewer.js";
 
-    viewerScript.onload = () => {
+    viewerScript.onload = async () => {
 
         initImageViewer();
+
+        await initSearch();
+
+        initExplore();
 
     };
 

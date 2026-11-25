@@ -1,0 +1,207 @@
+/* ===== Explore ===== */
+
+#exploreSection[hidden],
+#exploreMessage[hidden] {
+    display: none !important;
+}
+
+.explore-section {
+    width: 100%;
+    padding: 30px 0 40px;
+}
+
+
+/* ===== Заголовок ===== */
+
+.explore-heading {
+    margin-bottom: 35px;
+}
+
+.explore-label {
+    color: var(--accent, #f27fd0);
+    font-size: 11px;
+    letter-spacing: 4px;
+}
+
+.explore-heading h1 {
+    margin: 12px 0;
+    font-size: 38px;
+    font-weight: 400;
+}
+
+.explore-heading p {
+    margin: 0;
+    color: #9b98c0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* ===== Сетка категорий ===== */
+
+.explore-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+
+    gap: 20px;
+}
+
+
+/* ===== Карточка категории ===== */
+
+.explore-card {
+    position: relative;
+
+    display: flex;
+    align-items: flex-end;
+
+    width: 100%;
+    height: 210px;
+    padding: 22px;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    border: 1px solid rgba(140, 120, 255, 0.2);
+    border-radius: 18px;
+
+    background: linear-gradient(
+        135deg,
+        #30234e,
+        #131d38
+    );
+
+    color: white;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+
+    transition: transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.explore-card:hover {
+    transform: translateY(-4px);
+
+    border-color: var(--accent, #f27fd0);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ===== Обложка ===== */
+
+.explore-card-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: -2;
+
+    transition: transform 0.5s ease;
+}
+
+.explore-card:hover .explore-card-image {
+    transform: scale(1.06);
+}
+
+
+/* ===== Затемнение ===== */
+
+.explore-card::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to top,
+        rgba(5, 7, 20, 0.95),
+        rgba(5, 7, 20, 0.35) 60%,
+        rgba(5, 7, 20, 0.1)
+    );
+
+    z-index: -1;
+}
+
+
+/* ===== Информация ===== */
+
+.explore-card-info {
+    width: 100%;
+}
+
+.explore-card-info h2 {
+    margin: 0 0 8px;
+
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.explore-card-info p {
+    margin: 0 0 12px;
+
+    color: rgba(255, 255, 255, 0.75);
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.explore-card-count {
+    color: var(--accent, #f27fd0);
+    font-size: 11px;
+}
+
+
+/* ===== Сообщения ===== */
+
+.explore-message {
+    padding: 50px 20px;
+    color: #9b98c0;
+    text-align: center;
+}
+
+
+/* ===== Адаптивность ===== */
+
+@media (max-width: 600px) {
+
+    .explore-heading h1 {
+        font-size: 28px;
+    }
+
+    .explore-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .explore-card {
+        height: 170px;
+        padding: 14px;
+    }
+
+    .explore-card-info h2 {
+        font-size: 19px;
+    }
+
+    .explore-card-info p {
+        display: none;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .explore-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
