@@ -175,8 +175,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 collectionsSection.hidden = false;
                 postsSection.hidden = true;
 
-                return;
+                closeCollectionDetails();
 
+                await loadCollections();
+
+                return;
             }
 
             collectionsSection.hidden = true;
@@ -253,11 +256,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
 
     document.getElementById("newCollection")
-        ?.addEventListener("click", () => {
-
-            alert("Collection creation will be added later.");
-
-        });
+        ?.addEventListener("click", openCollectionModal);
 
 });
 
@@ -433,7 +432,9 @@ function configureProfileMode() {
     }
 
     if (newCollection) {
-        newCollection.style.display = isOwnProfile ? "" : "none";
+        newCollection.style.display = isOwnProfile
+            ? "inline-flex"
+            : "none";
     }
 
     const privateTabs = [
@@ -812,3 +813,201 @@ function initFollowModal() {
         followListRequest++;
     });
 }
+
+/* ===== Delete collection ===== */
+
+let deletingCollectionId = null;
+let collectionDeleting = false;
+
+
+function openDeleteCollectionModal() {
+
+    if (!isOwnProfile || !activeCollection) return;
+
+    deletingCollectionId = activeCollection.id;
+
+    const modal = document.getElementById(
+        "deleteCollectionModal"
+    );
+
+    const error = document.getElementById(
+        "deleteCollectionError"
+    );
+
+    error.textContent = "";
+    error.hidden = true;
+
+    document.getElementById("deleteCollectionName")
+        .textContent = activeCollection.name;
+
+    if (!modal.open) {
+        modal.showModal();
+    }
+
+    document.getElementById("cancelDeleteCollection").focus();
+}
+
+
+function closeDeleteCollectionModal() {
+
+    if (collectionDeleting) return;
+
+    deletingCollectionId = null;
+
+    document.getElementById("deleteCollectionModal")
+        .close();
+}
+
+
+async function deleteCollection() {
+
+    if (
+        !isOwnProfile ||
+        deletingCollectionId === null ||
+        collectionDeleting
+    ) {
+        return;
+    }
+
+    const boardId = deletingCollectionId;
+
+    const modal = document.getElementById(
+        "deleteCollectionModal"
+    );
+
+    const confirmButton = document.getElementById(
+        "confirmDeleteCollection"
+    );
+
+    const error = document.getElementById(
+        "deleteCollectionError"
+    );
+
+    error.hidden = true;
+    error.textContent = "";
+
+    collectionDeleting = true;
+
+    confirmButton.disabled = true;
+    confirmButton.textContent = "Deleting...";
+
+    try {
+
+        const csrfResponse = await fetch(
+            `${API_URL}/csrf`,
+            {
+                credentials: "include"
+            }
+        );
+
+        if (!csrfResponse.ok) {
+            throw new Error("Could not obtain CSRF token");
+        }
+
+        const csrf = await csrfResponse.json();
+
+        const response = await fetch(
+            `${API_URL}/boards/${boardId}`,
+            {
+                method: "DELETE",
+
+                credentials: "include",
+
+                headers: {
+                    [csrf.headerName]: csrf.token
+                }
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
+
+        deletingCollectionId = null;
+
+        modal.close();
+
+        closeCollectionDetails();
+
+        await loadCollections();
+
+    } catch (err) {
+
+        console.error("Could not delete collection:", err);
+
+        error.textContent =
+            "Unable to delete collection. Please try again.";
+
+        error.hidden = false;
+
+    } finally {
+
+        collectionDeleting = false;
+
+        confirmButton.disabled = false;
+        confirmButton.textContent = "Delete collection";
+    }
+}
+
+
+/* ===== Delete collection events ===== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const modal = document.getElementById(
+        "deleteCollectionModal"
+    );
+
+    if (!modal) return;
+
+    document.getElementById("deleteCollection")
+        ?.addEventListener(
+            "click",
+            openDeleteCollectionModal
+        );
+
+    document.getElementById("closeDeleteCollection")
+        .addEventListener(
+            "click",
+            closeDeleteCollectionModal
+        );
+
+    document.getElementById("cancelDeleteCollection")
+        .addEventListener(
+            "click",
+            closeDeleteCollectionModal
+        );
+
+    document.getElementById("confirmDeleteCollection")
+        .addEventListener(
+            "click",
+            deleteCollection
+        );
+
+    modal.addEventListener("cancel", event => {
+
+        event.preventDefault();
+
+        closeDeleteCollectionModal();
+
+    });
+
+    modal.addEventListener("click", event => {
+
+        if (event.target !== modal) return;
+
+        const rect = modal.getBoundingClientRect();
+
+        const outside =
+            event.clientX < rect.left ||
+            event.clientX > rect.right ||
+            event.clientY < rect.top ||
+            event.clientY > rect.bottom;
+
+        if (outside) {
+            closeDeleteCollectionModal();
+        }
+
+    });
+
+});

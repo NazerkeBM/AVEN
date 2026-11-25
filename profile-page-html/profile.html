@@ -213,62 +213,75 @@
             </nav>
 
             <section class="collections-section" id="collectionsSection" hidden>
+
                 <div class="collections-heading">
-                    <h2>My collections</h2>
+
+                    <h2 id="collectionsHeading">My collections</h2>
+
                     <button id="newCollection">+ New Collection</button>
-                </div>
-
-                <div class="collections-grid">
-
-                    <article class="collection-card collection-favorites">
-                        <div class="collection-overlay"></div>
-                        <div class="collection-info">
-                            <h3>Favorites</h3>
-                            <p>12 items</p>
-                        </div>
-                    </article>
-
-                    <article class="collection-card collection-aesthetics">
-                        <div class="collection-overlay"></div>
-                        <div class="collection-info">
-                            <h3>Aesthetics</h3>
-                            <p>28 items</p>
-                        </div>
-                    </article>
-
-                    <article class="collection-card collection-places">
-                        <div class="collection-overlay"></div>
-                        <div class="collection-info">
-                            <h3>Places</h3>
-                            <p>15 items</p>
-                        </div>
-                    </article>
-
-                    <article class="collection-card collection-people">
-                        <div class="collection-overlay"></div>
-                        <div class="collection-info">
-                            <h3>People</h3>
-                            <p>6 items</p>
-                        </div>
-                    </article>
-
-                    <article class="collection-card collection-design">
-                        <div class="collection-overlay"></div>
-                        <div class="collection-info">
-                            <h3>Design</h3>
-                            <p>10 items</p>
-                        </div>
-                    </article>
-
-                    <article class="collection-card collection-flowers">
-                        <div class="collection-overlay"></div>
-                        <div class="collection-info">
-                            <h3>Flowers</h3>
-                            <p>18 items</p>
-                        </div>
-                    </article>
 
                 </div>
+
+                <div class="collections-grid" id="collectionsGrid">
+
+                    <p class="profile-empty-state">
+                        Loading collections...
+                    </p>
+
+                </div>
+
+                <div class="collection-details" id="collectionDetails" hidden>
+
+                    <button
+                        type="button"
+                        class="collection-back"
+                        id="backToCollections">
+
+                        ← All collections
+
+                    </button>
+
+                    <div class="collection-details-header">
+
+                        <div class="collection-details-info">
+
+                            <h2 id="collectionDetailsName"></h2>
+
+                            <p id="collectionDetailsDescription"></p>
+
+                            <span id="collectionDetailsCount"></span>
+
+                        </div>
+
+                        <div class="collection-details-actions">
+
+                            <button
+                                type="button"
+                                id="editCollection">
+
+                                ✎ Edit
+
+                            </button>
+
+                            <button
+                                type="button"
+                                id="deleteCollection">
+
+                                Delete
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="collection-images-grid"
+                        id="collectionImagesGrid">
+                    </div>
+
+                </div>
+
             </section>
 
             <section class="posts-section">
@@ -382,8 +395,154 @@
     </dialog>
 
    <script src="../profile-page-js/profile.js"></script>
+   <script src="../profile-page-js/collections.js"></script>
    <script src="../profile-page-js/edit-profile.js"></script>
    <script src="../create-publication/create-publication.js"></script>
+
+   <dialog class="collection-modal" id="collectionModal">
+
+    <div class="collection-modal-header">
+
+        <h2 id="collectionModalTitle">Create collection</h2>
+
+        <button
+            type="button"
+            class="collection-modal-close"
+            id="closeCollectionModal"
+            aria-label="Close">
+            ×
+        </button>
+
+    </div>
+
+    <form id="collectionForm">
+
+        <div class="collection-form-field">
+
+            <label for="collectionName">
+                Collection name
+            </label>
+
+            <input
+                type="text"
+                id="collectionName"
+                placeholder="Give your collection a name"
+                maxlength="100"
+                required
+            >
+
+        </div>
+
+        <div class="collection-form-field">
+
+            <label for="collectionDescription">
+                Description
+            </label>
+
+            <textarea
+                id="collectionDescription"
+                placeholder="What inspires this collection?"
+                rows="4"
+            ></textarea>
+
+        </div>
+
+        <div class="collection-form-field">
+
+            <label for="collectionCover">
+                Cover image URL
+            </label>
+
+            <input
+                type="url"
+                id="collectionCover"
+                placeholder="https://..."
+            >
+
+        </div>
+
+        <p id="collectionFormError" role="alert" hidden></p>
+
+        <div class="collection-modal-actions">
+
+            <button
+                type="button"
+                id="cancelCollection"
+                class="collection-cancel">
+                Cancel
+            </button>
+
+            <button
+                type="submit"
+                id="saveCollection"
+                class="collection-submit">
+                Create collection
+            </button>
+
+        </div>
+
+    </form>
+
+</dialog>
+
+<dialog class="collection-modal delete-collection-modal"
+        id="deleteCollectionModal">
+
+    <div class="collection-modal-header">
+
+        <h2>Delete collection?</h2>
+
+        <button
+            type="button"
+            class="collection-modal-close"
+            id="closeDeleteCollection"
+            aria-label="Close">
+
+            ×
+
+        </button>
+
+    </div>
+
+    <div class="delete-collection-message">
+
+        <p>
+            Are you sure you want to delete
+            <strong id="deleteCollectionName"></strong>?
+        </p>
+
+        <p>
+            This action cannot be undone.
+            The original publications will not be deleted.
+        </p>
+
+    </div>
+
+    <p id="deleteCollectionError" role="alert" hidden></p>
+
+    <div class="collection-modal-actions">
+
+        <button
+            type="button"
+            class="collection-cancel"
+            id="cancelDeleteCollection">
+
+            Cancel
+
+        </button>
+
+        <button
+            type="button"
+            class="collection-delete-confirm"
+            id="confirmDeleteCollection">
+
+            Delete collection
+
+        </button>
+
+    </div>
+
+</dialog>
 
 </body>
 </html>

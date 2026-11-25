@@ -225,6 +225,10 @@ function initImageViewer() {
     };
 
     document.addEventListener("keydown", event => {
+        if (document.getElementById("collectionPicker")?.open) {
+            return;
+        }
+
         if (
             event.target.closest("input, textarea, [contenteditable='true']") &&
             event.key !== "Escape"

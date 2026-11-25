@@ -1,51 +1,91 @@
 <div class="image-viewer" id="imageViewer">
+
     <button class="viewer-close" id="viewerClose">×</button>
+
     <button class="viewer-arrow viewer-prev" id="viewerPrev">←</button>
 
-    <div class="viewer-background viewer-background-current" id="viewerBackground"></div>
-    <div class="viewer-background viewer-background-next" id="viewerBackgroundNext"></div>
+    <div
+        class="viewer-background viewer-background-current"
+        id="viewerBackground">
+    </div>
+
+    <div
+        class="viewer-background viewer-background-next"
+        id="viewerBackgroundNext">
+    </div>
 
     <div class="viewer-layout">
+
+        <!-- Publication image -->
+
         <div class="viewer-image-container">
             <img src="" alt="" id="viewerImage">
         </div>
 
+        <!-- Information panel -->
+
         <div class="viewer-info-panel">
+
+            <!-- Author -->
+
             <div class="viewer-author">
-                <span class="viewer-author-avatar" id="viewerAuthorAvatar">A</span>
+
+                <span
+                    class="viewer-author-avatar"
+                    id="viewerAuthorAvatar">A</span>
+
                 <div class="viewer-author-text">
                     <strong id="viewerAuthor">@aven_creator</strong>
                     <span id="viewerAuthorRole">Creator</span>
                 </div>
+
             </div>
 
+            <!-- Author statistics -->
+
             <div class="viewer-profile-stats">
+
                 <div>
                     <strong id="viewerPublications">—</strong>
                     <span>publications</span>
                 </div>
+
                 <div>
                     <strong id="viewerSubscribers">—</strong>
                     <span>subscribers</span>
                 </div>
+
             </div>
 
+            <!-- Profile actions -->
+
             <div class="viewer-profile-actions">
-                <button class="viewer-follow-button" id="viewerFollow">
+
+                <button
+                    class="viewer-follow-button"
+                    id="viewerFollow">
                     Follow
                 </button>
 
-                <button class="viewer-profile-button" id="viewerProfile">
+                <button
+                    class="viewer-profile-button"
+                    id="viewerProfile">
                     View profile →
                 </button>
+
             </div>
 
+            <!-- Publication information -->
+
             <div class="viewer-content-info">
+
                 <span class="viewer-category" id="viewerCategory">
                     Architecture
                 </span>
 
-                <h2 id="viewerTitle">Architecture inspiration</h2>
+                <h2 id="viewerTitle">
+                    Architecture inspiration
+                </h2>
 
                 <p id="viewerDescription">
                     A collection of architectural inspiration and modern spaces.
@@ -53,35 +93,169 @@
 
                 <div class="viewer-tags" id="viewerTags"></div>
 
+                <!-- Publication actions -->
+
                 <div class="viewer-actions">
-                    <button class="viewer-action like-button" id="viewerLike">♡</button>
-                    <div class="viewer-actions">
-                        <button class="viewer-action like-button" id="viewerLike">♡</button>
-                        <button class="viewer-action" id="viewerSave">Save</button>
-                        <button class="viewer-action" id="viewerShare">↗</button>
-                        <button class="viewer-action" id="viewerDownload">↓</button>
-                    </div>
-                    <button class="viewer-action" id="viewerShare">↗</button>
-                    <button class="viewer-action" id="viewerDownload">↓</button>
+
+                    <button
+                        class="viewer-action like-button"
+                        id="viewerLike">
+                        ♡
+                    </button>
+
+                    <button
+                        class="viewer-action"
+                        id="viewerSave">
+                        Save
+                    </button>
+
+                    <button
+                        type="button"
+                        class="viewer-action viewer-collection-button"
+                        id="viewerCollection"
+                        title="Add to collection"
+                        aria-label="Add to collection">
+                        ▤
+                    </button>
+
+                    <button
+                        class="viewer-action"
+                        id="viewerShare">
+                        ↗
+                    </button>
+
+                    <button
+                        class="viewer-action"
+                        id="viewerDownload">
+                        ↓
+                    </button>
+
                 </div>
 
+                <!-- Comments -->
+
                 <div class="viewer-comments">
+
                     <h3>Comments</h3>
 
-                    <div class="comments-list" id="commentsList"></div>
+                    <div
+                        class="comments-list"
+                        id="commentsList">
+                    </div>
 
                     <div class="comment-input">
+
                         <input
                             type="text"
                             id="commentInput"
-                            placeholder="Add a comment..."
-                        >
-                        <button id="commentPost">Post</button>
+                            placeholder="Add a comment...">
+
+                        <button id="commentPost">
+                            Post
+                        </button>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
-    <button class="viewer-arrow viewer-next" id="viewerNext">→</button>
+    <button class="viewer-arrow viewer-next" id="viewerNext">
+        →
+    </button>
+
 </div>
+
+
+<!-- Collection picker modal -->
+
+<dialog class="collection-picker" id="collectionPicker">
+
+    <div class="collection-picker-header">
+
+        <h2>Add to collection</h2>
+
+        <button
+            type="button"
+            class="collection-picker-close"
+            id="closeCollectionPicker"
+            aria-label="Close">
+            ×
+        </button>
+
+    </div>
+
+    <p class="collection-picker-description">
+        Choose where to add this publication.
+    </p>
+
+    <div
+        class="collection-picker-list"
+        id="collectionPickerList">
+    </div>
+
+    <p id="collectionPickerError" role="alert" hidden></p>
+
+    <button
+        type="button"
+        class="collection-picker-create"
+        id="pickerNewCollection">
+        + New Collection
+    </button>
+
+    <form id="pickerCreateForm" hidden>
+
+    <div class="picker-create-field">
+
+        <label for="pickerCollectionName">
+            Collection name
+        </label>
+
+        <input
+            type="text"
+            id="pickerCollectionName"
+            placeholder="Give your collection a name"
+            maxlength="100"
+            required>
+
+    </div>
+
+    <div class="picker-create-field">
+
+        <label for="pickerCollectionDescription">
+            Description
+        </label>
+
+        <textarea
+            id="pickerCollectionDescription"
+            placeholder="What inspires this collection?"
+            rows="3"></textarea>
+
+    </div>
+
+    <div class="picker-create-actions">
+
+        <button type="button" id="pickerCancelCreate">
+            Cancel
+        </button>
+
+        <button type="submit" id="pickerConfirmCreate">
+            Create & Add
+        </button>
+
+    </div>
+
+</form>
+
+    <button
+        type="button"
+        class="collection-picker-done"
+        id="collectionPickerDone">
+        Done
+    </button>
+
+</dialog>
