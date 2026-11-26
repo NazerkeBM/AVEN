@@ -1,0 +1,28 @@
+:root {
+
+    /* Accent color */
+
+    --accent: #f27fd0;
+
+
+    /* Glow effects */
+
+    --glow-soft: color-mix(
+        in srgb,
+        var(--accent) 12%,
+        transparent
+    );
+
+    --glow-border: color-mix(
+        in srgb,
+        var(--accent) 55%,
+        transparent
+    );
+
+    --glow-shadow: color-mix(
+        in srgb,
+        var(--accent) 22%,
+        transparent
+    );
+
+}

@@ -1,0 +1,61 @@
+<dialog class="collection-modal delete-collection-modal"
+        id="deleteCollectionModal">
+
+    <div class="collection-modal-header">
+
+        <h2>Delete collection?</h2>
+
+        <button
+            type="button"
+            class="collection-modal-close"
+            id="closeDeleteCollection"
+            aria-label="Close">
+
+            ×
+
+        </button>
+
+    </div>
+
+    <div class="delete-collection-message">
+
+        <p>
+            Are you sure you want to delete
+            <strong id="deleteCollectionName"></strong>?
+        </p>
+
+        <p>
+            This action cannot be undone.
+            The original publications will not be deleted.
+        </p>
+
+    </div>
+
+    <p id="deleteCollectionError"
+       role="alert"
+       hidden>
+    </p>
+
+    <div class="collection-modal-actions">
+
+        <button
+            type="button"
+            class="collection-cancel"
+            id="cancelDeleteCollection">
+
+            Cancel
+
+        </button>
+
+        <button
+            type="button"
+            class="collection-delete-confirm"
+            id="confirmDeleteCollection">
+
+            Delete collection
+
+        </button>
+
+    </div>
+
+</dialog>

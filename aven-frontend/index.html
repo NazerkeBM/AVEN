@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AVEN</title>
+
+    <!-- Appearance -->
+
+    <script src="shared/utils/appearance.js"></script>
+
+    <!-- Shared styles -->
+
+    <link rel="stylesheet" href="shared/styles/variables.css">
+    <link rel="stylesheet" href="shared/styles/base.css">
+
+    <!-- Main page styles -->
+
+    <link rel="stylesheet" href="pages/main-page/main-page-css/style.css">
+    <link rel="stylesheet" href="pages/main-page/main-page-css/hero.css">
+    <link rel="stylesheet" href="pages/main-page/main-page-css/categories.css">
+    <link rel="stylesheet" href="pages/main-page/main-page-css/image-grid.css">
+
+    <!-- Shared component styles -->
+
+    <link rel="stylesheet" href="shared/components/header/header.css">
+    <link rel="stylesheet" href="shared/components/sidebar/sidebar.css">
+
+    <!-- Feature styles -->
+
+    <link rel="stylesheet" href="features/image-viewer/image-viewer.css">
+    <link rel="stylesheet" href="features/comments/comments.css">
+    <link rel="stylesheet" href="pages/main-page/main-page-css/collection-picker.css">
+    <link rel="stylesheet" href="features/create-publication/create-publication.css">
+    <link rel="stylesheet" href="features/search/search.css">
+    <link rel="stylesheet" href="features/explore/explore.css">
+    <link rel="stylesheet" href="features/repost/repost.css">
+    <link rel="stylesheet" href="features/splash-screen/splash.css">
+    <link rel="stylesheet" href="features/notifications/notifications.css">
+
+    <!-- Mobile styles -->
+
+    <link rel="stylesheet" href="pages/main-page/main-page-css/mobile.css">
+
+</head>
+
+<body>
+
+    <!-- Page components -->
+
+    <div id="splash-container"></div>
+    <div id="header-container"></div>
+
+    <div class="page-layout">
+
+        <div id="sidebar-container"></div>
+
+        <main class="main-content">
+
+            <div id="hero-container"></div>
+            <div id="explore-container"></div>
+            <div id="categories-container"></div>
+            <div id="search-results-container"></div>
+            <div id="image-grid-container"></div>
+
+        </main>
+
+    </div>
+
+    <div id="image-viewer-container"></div>
+
+    <!-- Shared component scripts -->
+
+    <script src="shared/components/sidebar/sidebar.js"></script>
+
+    <!-- Main page scripts -->
+
+    <script src="pages/main-page/main-page-js/api.js"></script>
+    <script src="pages/main-page/main-page-js/image-grid.js"></script>
+    <script src="pages/main-page/main-page-js/categories.js"></script>
+    <script src="pages/main-page/main-page-js/current-user.js"></script>
+    <script src="features/comments/comments.js"></script>
+    <script src="pages/main-page/main-page-js/collection-picker.js"></script>
+
+    <!-- Feature scripts -->
+
+    <script src="features/explore/explore.js"></script>
+    <script src="features/repost/repost.js"></script>
+    <script type="module" src="features/create-publication/create-publication.js"></script>
+    <script src="features/splash-screen/splash.js"></script>
+
+    <!-- Search module -->
+
+    <script src="features/search/search-state.js"></script>
+    <script src="features/search/search-api.js"></script>
+    <script src="features/search/search-render.js"></script>
+    <script src="features/search/search-users.js"></script>
+    <script src="features/search/search-events.js"></script>
+    <script src="features/search/search.js"></script>
+
+    <!-- Page initialization -->
+
+    <script src="pages/main-page/main-page-js/component-loader.js"></script>
+
+</body>
+</html>

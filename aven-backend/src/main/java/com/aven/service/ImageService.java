@@ -3,11 +3,16 @@ package com.aven.service;
 import com.aven.entity.Image;
 import com.aven.entity.User;
 import com.aven.entity.Category;
+import com.aven.entity.Follow;
+import com.aven.entity.NotificationType;
+
 import com.aven.repository.ImageRepository;
 import com.aven.repository.UserRepository;
 import com.aven.repository.CategoryRepository;
+import com.aven.repository.FollowRepository;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
@@ -23,17 +28,23 @@ public class ImageService {
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
     private final ImageUploadService imageUploadService;
+    private final FollowRepository followRepository;
+    private final NotificationService notificationService;
 
     public ImageService(
             ImageRepository imageRepository,
             UserRepository userRepository,
             CategoryRepository categoryRepository,
-            ImageUploadService imageUploadService
+            ImageUploadService imageUploadService,
+            FollowRepository followRepository,
+            NotificationService notificationService
     ) {
         this.imageRepository = imageRepository;
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
         this.imageUploadService = imageUploadService;
+        this.followRepository = followRepository;
+        this.notificationService = notificationService;
     }
 
     public List<Image> getAllImages() {
@@ -52,6 +63,7 @@ public class ImageService {
         return imageRepository.findByCategoryId(categoryId);
     }
 
+    @Transactional
     public Image createImage(
             String username,
             String title,
@@ -108,7 +120,28 @@ public class ImageService {
         image.setCategory(category);
         image.setCreatedAt(LocalDateTime.now());
 
-        return imageRepository.save(image);
+        Image savedImage = imageRepository.save(image);
+
+        notifyFollowers(user, savedImage);
+
+        return savedImage;
+    }
+
+    private void notifyFollowers(User author, Image image) {
+
+        List<Follow> followers = followRepository
+                .findByFollowingId(author.getId());
+
+        for (Follow follow : followers) {
+
+            notificationService.createNotification(
+                    follow.getFollower().getId(),
+                    author.getId(),
+                    image.getId(),
+                    NotificationType.NEW_POST,
+                    "published a new post"
+            );
+        }
     }
 
     public void deleteImage(Long id, String username) {

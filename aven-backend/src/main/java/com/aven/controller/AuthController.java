@@ -1,5 +1,6 @@
 package com.aven.controller;
 
+import com.aven.dto.CurrentUserDto;
 import com.aven.dto.RegisterRequest;
 import com.aven.entity.User;
 import com.aven.service.UserService;
@@ -61,10 +62,18 @@ public class AuthController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<User> me(Principal principal) {
+    public ResponseEntity<CurrentUserDto> me(
+            Principal principal) {
+
+        if (principal == null) {
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .build();
+        }
 
         return userService
                 .getUserByUsername(principal.getName())
+                .map(CurrentUserDto::from)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

@@ -3,6 +3,7 @@ package com.aven.service;
 import com.aven.entity.Comment;
 import com.aven.entity.User;
 import com.aven.entity.Image;
+import com.aven.entity.NotificationType;
 
 import com.aven.repository.CommentRepository;
 import com.aven.repository.UserRepository;
@@ -11,6 +12,7 @@ import com.aven.repository.ImageRepository;
 import com.aven.dto.CommentRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -24,15 +26,18 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
     private final ImageRepository imageRepository;
+    private final NotificationService notificationService;
 
     public CommentService(
             CommentRepository commentRepository,
             UserRepository userRepository,
-            ImageRepository imageRepository
+            ImageRepository imageRepository,
+            NotificationService notificationService
     ) {
         this.commentRepository = commentRepository;
         this.userRepository = userRepository;
         this.imageRepository = imageRepository;
+        this.notificationService = notificationService;
     }
 
     public List<Comment> getCommentsByImage(Long imageId) {
@@ -46,6 +51,7 @@ public class CommentService {
         return commentRepository.findById(id);
     }
 
+    @Transactional
     public Comment createComment(
             String username,
             CommentRequest request
@@ -103,7 +109,20 @@ public class CommentService {
         comment.setImage(image);
         comment.setCreatedAt(LocalDateTime.now());
 
-        return commentRepository.save(comment);
+        Comment savedComment =
+                commentRepository.save(comment);
+
+        // Создание уведомления о новом комментарии
+
+        notificationService.createNotification(
+                image.getUser().getId(),
+                user.getId(),
+                image.getId(),
+                NotificationType.COMMENT,
+                "commented on your publication"
+        );
+
+        return savedComment;
     }
 
     public void deleteComment(

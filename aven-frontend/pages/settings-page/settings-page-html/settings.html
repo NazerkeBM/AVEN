@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>AVEN — Settings</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../settings-page-css/settings.css">
+
+</head>
+
+<body>
+    <div class="app">
+
+        <template data-include="space.html"></template>
+        <template data-include="header.html"></template>
+
+        <div class="layout">
+
+            <template data-include="sidebar.html"></template>
+
+            <main class="content">
+
+                <form id="settingsForm" novalidate>
+
+                    <template data-include="account.html"></template>
+                    <template data-include="panels.html"></template>
+                    <template data-include="save-button.html"></template>
+
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <template data-include="toast.html"></template>
+
+    <script type="module"
+            src="../settings-page-js/settings-loader.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<header class="topbar">
+
+    <a class="logo"
+       href="../../../index.html"
+       aria-label="AVEN — home">
+
+        <svg class="logo__mark"
+             viewBox="0 0 48 48"
+             aria-hidden="true">
+
+            <defs>
+                <linearGradient id="logoGrad"
+                                x1="0" y1="0"
+                                x2="1" y2="1">
+
+                    <stop offset="0" stop-color="#ffffff"/>
+                    <stop offset="1" stop-color="#c58cff"/>
+
+                </linearGradient>
+            </defs>
+
+            <path
+                d="M24 2c1 11 11 21 22 22-11 1-21 11-22 22-1-11-11-21-22-22C13 23 23 13 24 2Z"
+                fill="url(#logoGrad)"
+            />
+
+        </svg>
+
+        <span class="logo__text">AVEN</span>
+
+    </a>
+
+    <div class="user-menu">
+
+        <button type="button"
+                class="user-menu__btn"
+                id="userMenuBtn"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="userMenuList"
+                aria-label="Account menu">
+
+            <span class="user-menu__avatar">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.6"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     aria-hidden="true">
+
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/>
+
+                </svg>
+
+            </span>
+
+            <svg class="user-menu__chevron"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 aria-hidden="true">
+
+                <path d="m6 9 6 6 6-6"/>
+
+            </svg>
+
+        </button>
+
+        <div class="user-menu__list"
+             id="userMenuList"
+             role="menu"
+             hidden>
+
+            <a role="menuitem"
+               href="../../profile-page/profile-page-html/profile.html">
+                My profile
+            </a>
+
+            <a role="menuitem"
+               href="../../../index.html">
+                Home
+            </a>
+
+            <a role="menuitem"
+               href="../../registration-page/registration-page-html/registration.html"
+               id="signOutLink">
+                Sign out
+            </a>
+
+        </div>
+
+    </div>
+
+</header>

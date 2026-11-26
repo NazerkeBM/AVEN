@@ -1,14 +1,22 @@
 package com.aven.controller;
 
+import com.aven.dto.CurrentUserDto;
+import com.aven.dto.UpdateAccountRequest;
 import com.aven.dto.UpdateProfileRequest;
 import com.aven.entity.User;
 import com.aven.service.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
@@ -20,14 +28,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    // ===== Получение всех пользователей =====
-
     @GetMapping
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
-
-    // ===== Получение пользователя по ID =====
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(
@@ -38,8 +42,6 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // ===== Получение пользователя по username =====
-
     @GetMapping("/username/{username}")
     public ResponseEntity<User> getUserByUsername(
             @PathVariable String username) {
@@ -48,8 +50,6 @@ public class UserController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
-    // ===== Редактирование текущего профиля =====
 
     @PutMapping("/me")
     public ResponseEntity<User> updateProfile(
@@ -68,7 +68,46 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
-    // ===== Удаление пользователя =====
+    @PutMapping("/me/account")
+    public ResponseEntity<?> updateAccount(
+            @RequestBody UpdateAccountRequest request,
+            Principal principal,
+            HttpServletRequest httpRequest,
+            HttpServletResponse httpResponse) {
+
+        if (principal == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        String oldUsername = principal.getName();
+
+        User updatedUser = userService.updateAccount(
+                oldUsername,
+                request
+        );
+
+        boolean requiresLogin =
+                !oldUsername.equals(updatedUser.getUsername());
+
+        if (requiresLogin) {
+
+            SecurityContextLogoutHandler logoutHandler =
+                    new SecurityContextLogoutHandler();
+
+            logoutHandler.logout(
+                    httpRequest,
+                    httpResponse,
+                    SecurityContextHolder.getContext()
+                            .getAuthentication()
+            );
+        }
+
+        return ResponseEntity.ok(Map.of(
+                "message", "Account updated successfully",
+                "user", CurrentUserDto.from(updatedUser),
+                "requiresLogin", requiresLogin
+        ));
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(

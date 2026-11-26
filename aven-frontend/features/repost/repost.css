@@ -1,0 +1,35 @@
+/* =========================
+   REPOST BUTTON
+========================= */
+
+.viewer-actions .viewer-repost-button svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+}
+
+#viewerRepostCount {
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.viewer-actions .viewer-repost-button.is-reposted {
+    color: #65d6ad;
+    background: rgba(101, 214, 173, 0.15);
+    border-color: rgba(101, 214, 173, 0.4);
+}
+
+.viewer-repost-button[hidden] {
+    display: none !important;
+}
+
+.viewer-actions .viewer-repost-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.viewer-actions .viewer-repost-button:disabled:hover {
+    background: rgba(128, 128, 128, 0.12);
+    transform: none;
+}

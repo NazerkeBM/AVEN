@@ -1,0 +1,104 @@
+#deleteCollectionModal {
+    width: min(420px, calc(100% - 32px));
+    padding: 26px;
+    background: #101126;
+    border: 1px solid rgba(242, 143, 199, 0.25);
+    border-radius: 20px;
+}
+
+#deleteCollectionModal .collection-modal-header {
+    margin-bottom: 22px;
+}
+
+#deleteCollectionModal .collection-modal-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--profile-text, #f4f0ff);
+}
+
+#deleteCollectionModal .delete-collection-message {
+    margin-bottom: 26px;
+}
+
+#deleteCollectionModal .delete-collection-message p {
+    margin: 0;
+    color: #bdb6cf;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+#deleteCollectionModal .delete-collection-message p + p {
+    margin-top: 12px;
+    color: #918ba8;
+    font-size: 12px;
+}
+
+#deleteCollectionName {
+    color: #f4f0ff;
+    font-weight: 600;
+}
+
+#deleteCollectionModal #cancelDeleteCollection,
+#deleteCollectionModal #confirmDeleteCollection {
+    appearance: none;
+    -webkit-appearance: none;
+
+    padding: 11px 16px;
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#deleteCollectionModal #cancelDeleteCollection {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #d2ccdf;
+}
+
+#deleteCollectionModal #cancelDeleteCollection:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+#deleteCollectionModal #confirmDeleteCollection {
+    background: rgba(255, 122, 156, 0.12);
+    border: 1px solid rgba(255, 122, 156, 0.35);
+    color: #ff7a9c;
+}
+
+#deleteCollectionModal #confirmDeleteCollection:hover {
+    background: rgba(255, 122, 156, 0.22);
+    border-color: rgba(255, 122, 156, 0.55);
+}
+
+#deleteCollectionModal button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#deleteCollectionModal button:focus-visible {
+    outline: 1px solid rgba(242, 143, 199, 0.65);
+    outline-offset: 3px;
+}
+
+#deleteCollectionModal #confirmDeleteCollection:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#deleteCollectionError {
+    margin: 0 0 15px;
+    color: #ff7a9c;
+    font-size: 12px;
+    line-height: 1.5;
+}

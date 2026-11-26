@@ -1,0 +1,94 @@
+<dialog class="collection-modal" id="collectionModal">
+
+    <div class="collection-modal-header">
+
+        <h2 id="collectionModalTitle">Create collection</h2>
+
+        <button
+            type="button"
+            class="collection-modal-close"
+            id="closeCollectionModal"
+            aria-label="Close">
+
+            ×
+
+        </button>
+
+    </div>
+
+    <form id="collectionForm">
+
+        <div class="collection-form-field">
+
+            <label for="collectionName">
+                Collection name
+            </label>
+
+            <input
+                type="text"
+                id="collectionName"
+                placeholder="Give your collection a name"
+                maxlength="100"
+                required
+            >
+
+        </div>
+
+        <div class="collection-form-field">
+
+            <label for="collectionDescription">
+                Description
+            </label>
+
+            <textarea
+                id="collectionDescription"
+                placeholder="What inspires this collection?"
+                rows="4"
+            ></textarea>
+
+        </div>
+
+        <div class="collection-form-field">
+
+            <label for="collectionCover">
+                Cover image URL
+            </label>
+
+            <input
+                type="url"
+                id="collectionCover"
+                placeholder="https://..."
+            >
+
+        </div>
+
+        <p id="collectionFormError"
+           role="alert"
+           hidden>
+        </p>
+
+        <div class="collection-modal-actions">
+
+            <button
+                type="button"
+                id="cancelCollection"
+                class="collection-cancel">
+
+                Cancel
+
+            </button>
+
+            <button
+                type="submit"
+                id="saveCollection"
+                class="collection-submit">
+
+                Create collection
+
+            </button>
+
+        </div>
+
+    </form>
+
+</dialog>

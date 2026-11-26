@@ -1,0 +1,124 @@
+<section
+    class="notifications-panel"
+    id="notificationsPanel"
+    aria-labelledby="notificationsTitle"
+    hidden
+>
+
+    <div class="notifications-header">
+
+        <h2 id="notificationsTitle">
+            Notifications
+        </h2>
+
+        <button
+            type="button"
+            class="notifications-read-all"
+            id="notificationsReadAll"
+        >
+            Mark all as read
+        </button>
+
+    </div>
+
+    <div
+        class="notifications-tabs"
+        role="group"
+        aria-label="Notification filters"
+    >
+
+        <button
+            type="button"
+            class="notifications-tab is-active"
+            data-notification-filter="all"
+            aria-pressed="true"
+        >
+            All
+        </button>
+
+        <button
+            type="button"
+            class="notifications-tab"
+            data-notification-filter="following"
+            aria-pressed="false"
+        >
+            Following
+        </button>
+
+        <button
+            type="button"
+            class="notifications-tab"
+            data-notification-filter="system"
+            aria-pressed="false"
+        >
+            System
+        </button>
+
+    </div>
+
+    <div
+        class="notifications-loading"
+        id="notificationsLoading"
+        role="status"
+        hidden
+    >
+        <span class="notifications-spinner"></span>
+        <p>Loading notifications...</p>
+    </div>
+
+    <div
+        class="notifications-list"
+        id="notificationsList"
+        aria-live="polite"
+    ></div>
+
+    <div
+        class="notifications-empty"
+        id="notificationsEmpty"
+        hidden
+    >
+
+        <div class="notifications-empty-icon">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+                <path d="M10 21h4"/>
+            </svg>
+
+        </div>
+
+        <h3>No notifications yet</h3>
+
+        <p id="notificationsEmptyText">
+            You're all caught up!
+        </p>
+
+    </div>
+
+    <div
+        class="notifications-error"
+        id="notificationsError"
+        role="alert"
+        hidden
+    >
+
+        <p>Unable to load notifications.</p>
+
+        <button
+            type="button"
+            id="notificationsRetry"
+        >
+            Try again
+        </button>
+
+    </div>
+
+</section>

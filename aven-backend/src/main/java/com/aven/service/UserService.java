@@ -4,7 +4,10 @@ import com.aven.dto.RegisterRequest;
 import com.aven.dto.UpdateProfileRequest;
 import com.aven.entity.User;
 import com.aven.repository.UserRepository;
+import com.aven.dto.UpdateAccountRequest;
 
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
@@ -22,16 +25,17 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final NotificationService notificationService;
 
     public UserService(
             UserRepository userRepository,
-            PasswordEncoder passwordEncoder) {
+            PasswordEncoder passwordEncoder,
+            NotificationService notificationService) {
 
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.notificationService = notificationService;
     }
-
-    // ===== Получение пользователей =====
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -45,8 +49,7 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    // ===== Регистрация =====
-
+    @Transactional
     public User register(RegisterRequest request) {
 
         if (request.username() == null ||
@@ -113,10 +116,16 @@ public class UserService {
         user.setDisplayName(username);
         user.setCreatedAt(LocalDateTime.now());
 
-        return userRepository.save(user);
-    }
+        User savedUser = userRepository.save(user);
 
-    // ===== Редактирование профиля =====
+        notificationService.createSystemNotification(
+                savedUser.getId(),
+                "Welcome to AVEN! Discover inspiration, " +
+                        "share your creativity and connect with others."
+        );
+
+        return savedUser;
+    }
 
     public User updateProfile(
             String username,
@@ -127,8 +136,6 @@ public class UserService {
                         HttpStatus.NOT_FOUND,
                         "User not found"
                 ));
-
-        // Отображаемое имя
 
         if (request.displayName() != null) {
 
@@ -144,8 +151,6 @@ public class UserService {
             user.setDisplayName(displayName);
         }
 
-        // Описание профиля
-
         if (request.bio() != null) {
 
             String bio = request.bio().trim();
@@ -159,8 +164,6 @@ public class UserService {
 
             user.setBio(bio);
         }
-
-        // Аватарка
 
         if (request.avatarUrl() != null) {
 
@@ -178,7 +181,98 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    // ===== Проверка ссылки на аватарку =====
+    @Transactional
+    public User updateAccount(
+            String currentUsername,
+            UpdateAccountRequest request) {
+
+        User user = userRepository.findByUsername(currentUsername)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "User not found"
+                ));
+
+        if (request.displayName() == null ||
+                request.email() == null ||
+                request.username() == null) {
+
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "All fields are required"
+            );
+        }
+
+        String displayName = request.displayName().trim();
+
+        String email = request.email().trim()
+                .toLowerCase(Locale.ROOT);
+
+        String username = request.username().trim();
+
+        if (displayName.isEmpty() ||
+                displayName.length() > 100) {
+
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Display name must contain 1-100 characters"
+            );
+        }
+
+        if (!username.matches("[a-zA-Z0-9_.]{3,50}")) {
+
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Invalid username"
+            );
+        }
+
+        if (email.length() > 255 ||
+                !email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$")) {
+
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Invalid email"
+            );
+        }
+
+        userRepository.findByUsername(username)
+                .filter(existingUser ->
+                        !existingUser.getId().equals(user.getId()))
+                .ifPresent(existingUser -> {
+
+                    throw new ResponseStatusException(
+                            HttpStatus.CONFLICT,
+                            "Username already exists"
+                    );
+                });
+
+        userRepository.findByEmail(email)
+                .filter(existingUser ->
+                        !existingUser.getId().equals(user.getId()))
+                .ifPresent(existingUser -> {
+
+                    throw new ResponseStatusException(
+                            HttpStatus.CONFLICT,
+                            "Email already exists"
+                    );
+                });
+
+        user.setDisplayName(displayName);
+        user.setEmail(email);
+        user.setUsername(username);
+
+        try {
+
+            return userRepository.saveAndFlush(user);
+
+        } catch (DataIntegrityViolationException exception) {
+
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Username or email already exists"
+            );
+        }
+    }
 
     private void validateAvatarUrl(String avatarUrl) {
 
@@ -203,8 +297,6 @@ public class UserService {
             );
         }
     }
-
-    // ===== Удаление пользователя =====
 
     public void deleteUser(Long id) {
         userRepository.deleteById(id);

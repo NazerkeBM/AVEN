@@ -1,0 +1,68 @@
+<header class="header">
+
+    <a href="index.html" class="logo">
+        <span class="logo-symbol">✦</span>
+        <span class="logo-text">AVEN</span>
+    </a>
+
+    <div id="search-container"></div>
+
+    <div class="header-actions">
+
+        <div class="notifications-wrapper">
+
+            <button
+                type="button"
+                class="header-button"
+                id="notificationsButton"
+                aria-label="Notifications"
+                aria-expanded="false"
+                aria-controls="notificationsPanel"
+            >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                    <path d="M10 21h4"></path>
+                </svg>
+
+                <span
+                    class="notifications-badge"
+                    id="notificationsBadge"
+                    hidden
+                ></span>
+
+            </button>
+
+            <div id="notificationsContainer"></div>
+
+        </div>
+
+        <!-- Messages -->
+
+        <button
+            type="button"
+            class="header-button"
+            aria-label="Messages"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 5.5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H10l-5 3v-3.5a2 2 0 0 1-2-2v-7.5a2 2 0 0 1 2-2z"></path>
+            </svg>
+        </button>
+
+        <!-- Profile -->
+
+        <a
+            href="pages/registration-page/registration-page-html/registration.html"
+            class="profile-button"
+            id="currentUserAvatar"
+            aria-label="Sign In"
+            title="Sign In"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="8" r="3.5"></circle>
+                <path d="M5 20c.8-3.5 3.3-5.5 7-5.5s6.2 2 7 5.5"></path>
+            </svg>
+        </a>
+
+    </div>
+
+</header>

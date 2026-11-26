@@ -1,0 +1,78 @@
+function initSplashScreen() {
+
+    const splash = document.getElementById("aven-splash");
+
+    if (!splash) return;
+
+    if (sessionStorage.getItem("avenSplashShown") === "true") {
+
+        splash.remove();
+
+        return;
+
+    }
+
+    const content = splash.querySelector(".splash-content");
+
+    const particleCount = 35;
+
+    /* ===== Particles ===== */
+
+    for (let i = 0; i < particleCount; i++) {
+
+        const particle = document.createElement("span");
+
+        particle.className = "splash-particle";
+
+        particle.style.left = Math.random() * 100 + "%";
+
+        particle.style.top = Math.random() * 100 + "%";
+
+        particle.style.setProperty(
+            "--delay",
+            Math.random() * 2 + "s"
+        );
+
+        const size = Math.random() * 2 + 1;
+
+        particle.style.width = size + "px";
+
+        particle.style.height = size + "px";
+
+        content.appendChild(particle);
+
+    }
+
+    /* ===== Scroll lock ===== */
+
+    const previousOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+
+    /* ===== Session state ===== */
+
+    sessionStorage.setItem("avenSplashShown", "true");
+
+    /* ===== Animation settings ===== */
+
+    const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    /* ===== Animation completion ===== */
+
+    setTimeout(() => {
+
+        splash.classList.add("is-hidden");
+
+        setTimeout(() => {
+
+            splash.remove();
+
+            document.body.style.overflow = previousOverflow;
+
+        }, 800);
+
+    }, reducedMotion ? 100 : 3500);
+
+}

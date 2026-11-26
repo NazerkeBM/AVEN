@@ -1,0 +1,31 @@
+.profile-page button:focus-visible,
+.profile-page a:focus-visible {
+    outline: 2px solid var(--profile-pink);
+    outline-offset: 3px;
+}
+
+.profile-empty-state {
+    grid-column: 1 / -1;
+    padding: 40px 20px;
+    color: var(--profile-muted);
+    text-align: center;
+    background: var(--profile-card);
+    border: 1px solid var(--profile-border);
+    border-radius: 14px;
+}
+
+.profile-tabs,
+.collections-section,
+.posts-section {
+    margin-left: 28px;
+    margin-right: 28px;
+}
+
+#newCollection {
+    display: none;
+}
+
+.collections-section[hidden],
+.posts-section[hidden] {
+    display: none !important;
+}

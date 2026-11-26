@@ -3,6 +3,7 @@ package com.aven.service;
 import com.aven.entity.Follow;
 import com.aven.entity.FollowId;
 import com.aven.entity.User;
+import com.aven.entity.NotificationType;
 import com.aven.repository.FollowRepository;
 import com.aven.repository.UserRepository;
 
@@ -20,13 +21,16 @@ public class FollowService {
 
     private final FollowRepository followRepository;
     private final UserRepository userRepository;
+    private final NotificationService notificationService;
 
     public FollowService(
             FollowRepository followRepository,
-            UserRepository userRepository) {
+            UserRepository userRepository,
+            NotificationService notificationService) {
 
         this.followRepository = followRepository;
         this.userRepository = userRepository;
+        this.notificationService = notificationService;
     }
 
     public List<Follow> getFollowing(Long userId) {
@@ -91,7 +95,7 @@ public class FollowService {
 
         FollowId id = new FollowId(
                 follower.getId(),
-                following.getId()
+                followingId
         );
 
         Optional<Follow> existingFollow =
@@ -108,7 +112,17 @@ public class FollowService {
         follow.setFollowing(following);
         follow.setCreatedAt(LocalDateTime.now());
 
-        return followRepository.save(follow);
+        Follow savedFollow = followRepository.save(follow);
+
+        notificationService.createNotification(
+                following.getId(),
+                follower.getId(),
+                null,
+                NotificationType.FOLLOW,
+                follower.getUsername() + " started following you"
+        );
+
+        return savedFollow;
     }
 
     @Transactional

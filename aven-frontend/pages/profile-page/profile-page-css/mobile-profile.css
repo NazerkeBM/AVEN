@@ -1,0 +1,296 @@
+@media (min-width: 1500px) {
+
+    .profile-posts-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1100px) {
+
+    .profile-main {
+        padding: 24px 22px 45px;
+    }
+
+    .profile-details {
+        gap: 19px;
+        padding-right: 22px;
+        padding-left: 22px;
+    }
+
+    .profile-avatar {
+        flex-basis: 100px;
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-actions {
+        max-width: 180px;
+    }
+
+    .collections-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .collection-card {
+        min-height: 120px;
+    }
+}
+
+@media (max-width: 760px) {
+
+    .profile-main {
+        padding: 0 0 35px;
+    }
+
+    .profile-card {
+        border-radius: 17px;
+    }
+
+    .profile-cover {
+        min-height: 145px;
+        height: 145px;
+    }
+
+    .cover-title {
+        font-size: 34px;
+    }
+
+    .cover-subtitle {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .profile-details {
+        position: relative;
+        display: grid;
+        grid-template-columns: 82px minmax(0, 1fr);
+        column-gap: 15px;
+        row-gap: 5px;
+        padding: 0 17px;
+        border-top: none;
+    }
+
+    .profile-avatar {
+        width: 82px;
+        height: 82px;
+        margin-top: -35px;
+        border-width: 4px;
+        font-size: 32px;
+    }
+
+    .profile-information {
+        display: contents;
+    }
+
+    .profile-information h1 {
+        grid-column: 1 / -1;
+        margin-bottom: -5px;
+        line-height: 1.2;
+    }
+
+    .profile-information .profile-username {
+        grid-column: 1 / -1;
+        margin-top: 0;
+        line-height: 1.2;
+    }
+
+    .profile-information .profile-role,
+    .profile-information .profile-bio {
+        grid-column: 1 / -1;
+    }
+
+    .profile-username,
+    .profile-role,
+    .profile-bio {
+        font-size: 12px;
+    }
+
+    .profile-role {
+        margin-top: 6px;
+    }
+
+    .profile-stats {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: stretch;
+
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: center;
+
+        gap: 0;
+        margin-top: 0;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .profile-stats > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        gap: 4px;
+        min-width: 0;
+
+        text-align: center;
+    }
+
+    .profile-stats strong {
+        font-size: 15px;
+        white-space: nowrap;
+    }
+
+    .profile-stats span {
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    .profile-actions {
+        grid-column: 1 / -1;
+        max-width: none;
+
+        padding-top: 12px;
+        margin-top: 35px;
+        margin-bottom: 0;
+
+        transform: translateY(0);
+    }
+
+    .profile-actions button {
+        flex: 1;
+        padding: 0 10px;
+        font-size: 11px;
+    }
+
+    .profile-actions .more-profile-button {
+        flex: 0 0 39px;
+    }
+
+    .profile-tabs {
+        gap: 18px;
+        margin: 0 15px 0 25px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        white-space: nowrap;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .profile-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .profile-tab {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 7px;
+        flex-shrink: 0;
+
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+    .profile-tab:not(.active) {
+        font-size: 0;
+        gap: 0;
+    }
+
+    .profile-tab span {
+        font-size: 21px;
+        line-height: 1;
+        flex-shrink: 0;
+    }
+
+    .profile-tab.active {
+        padding: 13px 10px;
+    }
+
+    .collections-section {
+        margin-top: 25px;
+    }
+
+    .collections-heading h2,
+    .posts-heading h2 {
+        font-size: 17px;
+    }
+
+    .collections-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .collection-card {
+        min-height: 125px;
+    }
+
+    .collection-info {
+        padding: 12px;
+    }
+
+    .posts-section {
+        margin-top: 30px;
+    }
+
+    .profile-posts-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .profile-main {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .profile-details {
+        padding-bottom: 20px;
+    }
+
+    .profile-avatar {
+        width: 68px;
+        height: 68px;
+        font-size: 27px;
+    }
+
+    .profile-information h1 {
+        font-size: 22px;
+    }
+
+    .profile-stats {
+        gap: 10px;
+    }
+
+    .profile-stats > div {
+        gap: 2px;
+    }
+
+    .profile-actions {
+        gap: 6px;
+    }
+
+    .profile-actions button {
+        padding: 0 7px;
+        font-size: 10px;
+    }
+
+    .cover-title {
+        font-size: 29px;
+    }
+
+    .collections-grid,
+    .profile-posts-grid {
+        gap: 9px;
+    }
+
+    .collection-card {
+        min-height: 105px;
+    }
+}

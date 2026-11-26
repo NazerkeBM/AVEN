@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile | AVEN</title>
+
+    <!-- Appearance -->
+
+    <script src="../../../shared/utils/appearance.js"></script>
+
+    <!-- Shared styles -->
+
+    <link rel="stylesheet" href="../../../shared/styles/variables.css">
+    <link rel="stylesheet" href="../../../shared/styles/base.css">
+    <link rel="stylesheet" href="../../main-page/main-page-css/style.css">
+    <link rel="stylesheet" href="../../../shared/components/header/header.css">
+    <link rel="stylesheet" href="../../../shared/components/sidebar/sidebar.css">
+
+    <!-- Profile styles -->
+
+    <link rel="stylesheet" href="../profile-page-css/profile.css">
+    <link rel="stylesheet" href="../profile-page-css/edit-profile.css">
+    <link rel="stylesheet" href="../profile-page-css/follow-modal.css">
+
+    <!-- Feature styles -->
+
+    <link rel="stylesheet" href="../../../features/create-publication/create-publication.css">
+    <link rel="stylesheet" href="../../../features/search/search.css">
+    <link rel="stylesheet" href="../../../features/notifications/notifications.css">
+
+    <!-- Responsive styles -->
+
+    <link rel="stylesheet" href="../../main-page/main-page-css/mobile.css">
+    <link rel="stylesheet" href="../profile-page-css/mobile-profile.css">
+
+</head>
+
+<body class="profile-page">
+
+    <!-- Shared header -->
+
+    <template
+        data-include="../../../shared/components/header/header.html">
+    </template>
+
+    <!-- Page layout -->
+
+    <div class="page-layout">
+
+        <!-- Shared sidebar -->
+
+        <template
+            data-include="../../../shared/components/sidebar/sidebar.html">
+        </template>
+
+        <!-- Profile content -->
+
+        <main class="main-content profile-main">
+
+            <template data-include="profile-card.html"></template>
+            <template data-include="profile-tabs.html"></template>
+            <template data-include="profile-posts.html"></template>
+            <template data-include="profile-collections.html"></template>
+
+        </main>
+
+    </div>
+
+    <!-- Profile dialogs -->
+
+    <template data-include="follow-modal.html"></template>
+    <template data-include="collection-modal.html"></template>
+    <template data-include="delete-collection-modal.html"></template>
+
+    <!-- Shared scripts -->
+
+    <script src="../../../shared/components/sidebar/sidebar.js"></script>
+
+    <!-- Feature scripts -->
+
+    <script src="../../../features/repost/repost.js"></script>
+    <script type="module" src="../../../features/create-publication/create-publication.js"></script>
+
+    <!-- Search module -->
+
+    <script src="../../../features/search/search-state.js"></script>
+    <script src="../../../features/search/search-api.js"></script>
+    <script src="../../../features/search/search-render.js"></script>
+    <script src="../../../features/search/search-users.js"></script>
+    <script src="../../../features/search/search-events.js"></script>
+    <script src="../../../features/search/search.js"></script>
+
+    <!-- Profile loader -->
+
+    <script type="module"
+            src="../profile-page-js/profile-loader.js">
+    </script>
+
+</body>
+</html>
